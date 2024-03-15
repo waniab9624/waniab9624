@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="search-results-wrapper">
+    <h2 id="books-heading">Books</h2>
+    <br>
+    <div id="search-results">
+        {% for book in books %}
+        <div class="card">
+            {% if book.link %}
+                <a href="{{ book.link }}" class="book-link" target="_blank">
+            {% else %}
+                <a href="#" class="book-link">
+            {% endif %}
+                    <div class="card-content">
+                        <div class="card-text">
+                            <div class="book-title">{{ book.title }}</div>
+                            <div class="book-info">{{ book.author }}</div>
+                            <div class="book-info">{{ book.genre }}</div>
+                            <div class="book-info">{{ book.publishing_year }}</div>
+                            <div class="book-info">{{ book.pages }} Pages</div>
+                            <div class="book-info">{{ book.chapters }} Chapters</div>
+                        </div>
+                        {% if book.cover %}
+                            <div class="card-image">
+                                <img class="book-cover" src="{{ book.cover }}">
+                            </div>
+                        {% endif %}
+                    </div>
+                </a>    
+            <div class="card-buttons">
+                <button class="edit-button" id="edit-button-{{ book.id }}" onclick="location.href=`{% url 'update' book.id %}`">Edit</button>
+                <button class="delete-button" id="delete-button-{{ book.id }}">Delete</button>
+            </div>
+        </div>
+        {% empty %}
+        </div>
+        <h3>No books were found.</h3>
+    {% endfor %}
+</div>
+<script src="{% static 'js/home.js' %}"></script>
+<script src="{% static 'js/delete_book.js' %}"></script>
+{% endblock %}
