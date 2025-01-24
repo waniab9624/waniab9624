@@ -1,0 +1,49 @@
+
+import cv2
+import streamlit as st
+from datetime import datetime
+import threading
+import time
+import os
+import numpy as np
+import tempfile
+from playsound import playsound
+
+
+endpoint :
+
+
+Set the request URL to:
+
+http://127.0.0.1:8000/process_video/
+b. Set the Method
+Ensure the method is POST.
+
+c. Add Headers
+In the Headers tab:
+
+Add a header Content-Type with the value multipart/form-data.
+d. Add Body Parameters
+Switch to the Body tab and choose form-data. Add the following fields:
+
+video_file (file)
+
+Set the key to video_file.
+Change the value type to File.
+Upload a video file from your computer (e.g., an .mp4 or .avi file).
+start_hour (text)
+
+Set the key to start_hour.
+Add a valid hour value (e.g., 9 for 9 AM).
+end_hour (text)
+
+Set the key to end_hour.
+Add a valid hour value (e.g., 18 for 6 PM).
+detection_threshold (text)
+
+Set the key to detection_threshold.
+Add a number (e.g., 5) indicating seconds before triggering detection.
+alarm_rearm_time (text)
+
+Set the key to alarm_rearm_time.
+Add a number (e.g., 10) indicating seconds before re-arming the al
